@@ -17,10 +17,14 @@ a {
     color: #ff5c69 !important;
 }
 
+section  {
+    height: 100vh;
+}
+
 
 .fondo {
     background: url("../assets/img/wallpaper.png");
-    height: 100vh;
+    height: auto;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -33,6 +37,7 @@ a {
 
 .loginForm {
     display: flex;
+    height: auto;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
