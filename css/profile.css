@@ -14,13 +14,11 @@ body {
 }
 
 p {
-  text-align: justify;body {
+  text-align: justify;
   background: #f2f2f2 !important;
   color: #333333 !important;
   font-size: 2rem;
   font-family: "Oxygen", sans-serif !important;
-}
-
 }
 
 a {
@@ -106,4 +104,13 @@ a {
 
 .side ul li a:hover{
     background: #f2f2f2;
+}
+
+.profile-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
 }
