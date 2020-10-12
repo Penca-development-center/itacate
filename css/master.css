@@ -6,16 +6,15 @@
   -webkit-box-sizing: border-box;
 }
 
-body {
+
+p {
+  text-align: justify;body {
   background: #f2f2f2 !important;
   color: #333333 !important;
   font-size: 2rem;
   font-family: "Oxygen", sans-serif !important;
 }
 
-p {
-  text-align: justify;
-}
 
 a {
   text-decoration: none;
