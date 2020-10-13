@@ -5,15 +5,21 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-
-
-p {
-  text-align: justify;body {
+body {
   background: #f2f2f2 !important;
   color: #333333 !important;
   font-size: 2rem;
   font-family: "Oxygen", sans-serif !important;
 }
+
+/* p {
+  
+  text-align: justify;
+  background: #f2f2f2 !important;
+  color: #333333 !important;
+  font-size: 2rem;
+  font-family: "Oxygen", sans-serif !important;
+} */
 
 
 a {
