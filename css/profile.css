@@ -26,6 +26,15 @@ a {
   color: #f2f2f2;
 }
 
+section{
+    width: 100%;
+    height: 100vh;
+}
+
+.row {
+    margin: 0 !important;
+}
+
 .header {
     height: 20%;
     background: #ea153e;
@@ -41,9 +50,19 @@ a {
     height: 100%;
 }
 
+.menuWrapper{
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .menu {
-    width: 100%;
+    width: 60%;
     height: auto;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
     color: #f2f2f2;
     background: #ea153e;
 }
@@ -113,4 +132,14 @@ a {
     align-items: center;
     justify-content: center;
     padding: 10px;
+}
+
+@media (max-width: 991.98px) {
+    .menu{
+            width: 100%;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+    }
 }
