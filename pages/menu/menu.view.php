@@ -22,6 +22,11 @@
             $secondStatement->execute(array());
             $result = $secondStatement->fetchAll();
             // print_r($result);
+
+            $tirdStatement = $pdo->prepare("SELECT * FROM productos");
+            $tirdStatement->execute(array());
+            $res = $tirdStatement->fetchAll();
+            // print_r($res);
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +39,7 @@
     <link rel="shortcut icon" href="../../assets/ico/favicon.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../libs/bootstrap.css" />
+    <link rel="stylesheet" href="../../libs/dataTables.bootstrap4.min.css">
 </head>
 <body>
     <div class="container-fulid">
@@ -115,7 +121,7 @@
                         <label for="exampleFormControlSelect1"> Categoria </label>
                             <select name = "categoria" class="form-control" id="exampleFormControlSelect1" required>      
                                 <?php foreach ($resultado as $categorias) : ?>
-                                    <option value="<?php echo $categorias['id_categoria']?>"><?php echo $categorias['valor'] ?></option>
+                                    <option value="<?php echo $categorias['id_categoria'];?>"><?php echo $categorias['valor'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -165,15 +171,31 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">
-                        <h3>Modificar datos del menú</h3>  
-                        <h4>Buscar productos por nombre</h4>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre: </label>
-                            <input name = "producto" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Buscar Datos</button>
-                        </form>
+                          <caption>Lista de productos agregados </caption>
+                            <table class="table table-hover" id="example">
+                              <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Precio</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <?php foreach ($res as $productos) : ?>
+                              <tr>
+
+                                  <th scope="row"> <?php echo $productos['id_producto']; ?></th>
+                                  <td><?php echo $productos['nombre']; ?></td>
+                                  <td><?php echo $productos['foto']; ?></td>
+                                  <td><?php echo $productos['descripcion']; ?></td>
+                                  <td><?php echo $productos['precio']; ?></td>
+
+                              </tr>
+                                <?php endforeach ?>
+                              </tbody>
+                            </table>
                     </div>
                     </div>
                 </div>
@@ -224,7 +246,10 @@
     </div>
     </div>
         <script src="../../libs/jquery-3.5.1.js"></script>
-    <script src="../../libs/bootstrap.js"></script>
+        <script src="../../libs/bootstrap.js"></script>
+        <script src="../../libs/dataTables.bootstrap4.min.js"></script>
+        <script src="../../libs//jquery.dataTables.min.js"></script>
+        <script src="./menu.js"></script>
 </body>
 </html>
 

@@ -1,2 +1,3 @@
-const agregar = document.getElementById('agregar');
-console.log(agregar);
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
