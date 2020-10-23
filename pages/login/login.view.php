@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../css/login.css" />
     <link rel="shortcut icon" href="../../assets/ico/favicon.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../../libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../libs/bootstrap.css" />
 </head>
 
 <body>
@@ -73,8 +73,8 @@
             </div>
         </section>
     </div>
-    <script src="../../libs/jquery-3.5.1.min.js"></script>
-    <script src="../../libs/bootstrap.min.js"></script>
+    <script src="../../libs/jquery-3.5.1.js"></script>
+    <script src="../../libs/bootstrap.js"></script>
 </body>
 
 </html>
