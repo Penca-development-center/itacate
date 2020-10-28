@@ -37,46 +37,37 @@
             ':des' =>  $descripcion,
             ':precio' =>  $precio
         ));        
-    } else if( $_SERVER['REQUEST_METHOD'] == 'GET') {
+    } 
+    // else if( $_SERVER['REQUEST_METHOD'] == 'GET') {
+    //     echo 'get';
 
-        // $producto = htmlspecialchars($_GET['producto']);
+    // } 
+    else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
-        // try 
-        // {
-        //     $host ="localhost";
-        //     $userName="root";
-        //     $password="Penca.1234";
-		// 	$dbName="itacate";
+    try 
+        {
+            $host ="localhost";
+            $userName="root";
+            $password="Penca.1234";
+			$dbName="itacate";
 
-        //     $dsn = "mysql:host=".$host.";dbname=".$dbName.";";
-        //     $pdo = new PDO ($dsn, $userName, $password);
-        // }   
-        // catch (PDOException $e) 
-        // {
-        //         //throw $th;
-        //     echo "Error: ". $e->getMEssage();
-        // }
+            $dsn = "mysql:host=".$host.";dbname=".$dbName.";";
+            $pdo = new PDO ($dsn, $userName, $password);
+        }   
+        catch (PDOException $e) 
+        {
+                //throw $th;
+            echo "Error: ". $e->getMEssage();
+        }
 
-        // $statement = $pdo->prepare("SELECT * FROM productos WHERE nombre = :nombre");
-        // $statement->execute(array(
-        //     ':nombre' => $producto
-        // ));
+        $_PUT['idProducto'];
 
-        // $resultado = $statement->fetch();
-
-        // // print_r($resultado)
-
-        // // if($resultado !== false) {
-        // //     echo 'si';
-        // // } else {
-        // //     echo 'no';
-        // // }
-
-    } else if ($_SERVER['REQUEST_METHOD'] == 'UPDATE') {
-        echo  'update';
+        
     } else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         echo 'delete';
     }
+
+
 
     include './menu.view.php';
 

@@ -39,6 +39,9 @@
     <link rel="shortcut icon" href="../../assets/ico/favicon.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../libs/bootstrap.css" />
+    <link rel="stylesheet" href="../../libs/font-awesome.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../libs/dataTables.bootstrap4.min.css">
 </head>
 <body>
@@ -57,7 +60,7 @@
                     <ul class="menu navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="#agregar"> Crear </a></li>
                         <li class="nav-item"><a class="nav-link" href="#modificar"> Modificaar men&uacute; </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#secciones"> Secciones y categorias </a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="#secciones"> Secciones y categorias </a></li> -->
                         <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal"> Ayuda </a></li>
                         <li class="nav-item">
                             <a class="nav-link" href="../closeSession.php"> Salir</a>
@@ -140,12 +143,6 @@
                             <input name = "nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
 
-                        <!-- <div class="custom-file">
-                            <h5>Foto: </h5>
-                            <input name = "foto" type="file" class="custom-file-input" id="customFileLang" lang="es">
-                            <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
-                        </div> -->
-
                         <div class="form-group">
                             <label for="exampleInputPassword1">Descripci&oacute;n</label>
                             <input name = "desc" type="text" class="form-control" id="exampleInputPassword1" required>
@@ -172,7 +169,7 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
                           <caption>Lista de productos agregados </caption>
-                            <table class="table table-hover" id="example">
+                            <table class="table table-hover table-striped table-responsive table-bordered" id="example">
                               <thead class="thead-dark">
                                   <tr>
                                     <th scope="col">#</th>
@@ -180,18 +177,28 @@
                                     <th scope="col">Foto</th>
                                     <th scope="col">Descripcion</th>
                                     <th scope="col">Precio</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Borrar</th>
                                   </tr>
                               </thead>
                               <tbody>
                                 <?php foreach ($res as $productos) : ?>
                               <tr>
-
                                   <th scope="row"> <?php echo $productos['id_producto']; ?></th>
                                   <td><?php echo $productos['nombre']; ?></td>
                                   <td><?php echo $productos['foto']; ?></td>
                                   <td><?php echo $productos['descripcion']; ?></td>
-                                  <td><?php echo $productos['precio']; ?></td>
-
+                                  <td><?php echo "$".$productos['precio']; ?></td>
+                                  <td>
+                                    <span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modEditar" onclick="actualizarProducto(<?php echo $productos['id_producto']?>)">
+                                        <span> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </span>
+                                    </span>
+                                </td>
+                                  <td>
+                                    <span class="btn btn-danger btn-sm" onclick="eliminarDatos(<?php echo $productos['id_producto']?>)">
+                                        <span> <i class="fa fa-trash-o" aria-hidden="true"></i> </span>
+                                    </span>
+                                </td>
                               </tr>
                                 <?php endforeach ?>
                               </tbody>
@@ -199,7 +206,7 @@
                     </div>
                     </div>
                 </div>
-                <div class="card" id="secciones">
+                <!-- <div class="card" id="secciones">
                     <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -209,15 +216,14 @@
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
-                        
                     </div>
                     </div>
-                </div>
+                </div> -->
                 </div>
             </article>
         </section>
 
-                        <!-- Modal -->
+        <!-- Help -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -243,12 +249,72 @@
             </div>
         </div>
         </div>
+
+        <!-- Editar -->
+        <div class="modal fade" id="modEditar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modificar datos</h5>
+                </button>
+            </div>
+            <div class="modal-body">
+                                    <form id="editForm">
+                        <div class="form-group">
+                            <input type="text" id="idProducto" name="idProducto" hidden="true">
+                        </div>
+                        <div class="form-group">
+                        <label for="exampleFormControlSelect1"> Categoria </label>
+                            <select name = "categoriaU" class="form-control" id="categoriaU" required>      
+                                <?php foreach ($resultado as $categorias) : ?>
+                                    <option value="<?php echo $categorias['id_categoria'];?>"><?php echo $categorias['valor'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                        <label for="exampleFormControlSelect1"> Secci&oacute;n </label>
+                            <select name = "seccionU" class="form-control" id="seccionU" required>
+                                <?php foreach ($result as $secciones) : ?>
+                                    <option value="<?php echo $secciones['id_seccion']?>"><?php echo $secciones['valor'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nombre: </label>
+                            <input name = "nombreU" type="text" class="form-control" id="nombreU" aria-describedby="emailHelp" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Descripci&oacute;n</label>
+                            <input name = "descU" type="text" class="form-control" id="descripcionU" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Precio</label>
+                            <input name = "precioU" type="number" class="form-control" id="precioU" required>
+                        </div>
+                        </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnActualizar"> Hacer cambios </button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
     </div>
     </div>
         <script src="../../libs/jquery-3.5.1.js"></script>
         <script src="../../libs/bootstrap.js"></script>
         <script src="../../libs/dataTables.bootstrap4.min.js"></script>
         <script src="../../libs//jquery.dataTables.min.js"></script>
+        <script src="https://use.fontawesome.com/63c84a7d04.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
         <script src="./menu.js"></script>
 </body>
 </html>

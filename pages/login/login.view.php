@@ -47,13 +47,6 @@
                             </div>
                             <div class="d-flex justify-content-around">
                                 <div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="materialLoginFormRemember" name="recuerdame">
-                                        <label class="form-check-label"
-                                            for="materialLoginFormRemember">Recuérdame</label>
-                                    </div>
-                                </div>
-                                <div>
                                     <a href="">Olvidé mi contraseña</a>
                                 </div>
                             </div>
