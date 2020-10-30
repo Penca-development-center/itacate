@@ -172,6 +172,7 @@
         </div>
     </div>
         <script src="../../libs/jquery-3.5.1.js"></script>
-    <script src="../../libs/bootstrap.js"></script>
+        <script src="../../libs/bootstrap.js"></script>
+        <script src="./profile.js"></script>
 </body>
 </html>
